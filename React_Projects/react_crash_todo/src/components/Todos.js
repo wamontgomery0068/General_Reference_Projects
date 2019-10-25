@@ -4,6 +4,8 @@ class Todos extends Component {
 
   render() {
 
+    console.log(this.props.todos);
+
     return (
 
       <div>
