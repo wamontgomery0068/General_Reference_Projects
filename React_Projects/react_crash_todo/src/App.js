@@ -34,6 +34,16 @@ class App extends Component {
     })});
   }
 
+  // Delete Todo
+  deleteTodo = (id) => {
+
+    // Test to see if the id of a single todo appears in the console
+    // console.log(id);
+
+    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)]});
+
+  }
+
   // Note:
   // Render is a lifecycle method and it is the only one that is required because it 
   // needed to render the component in the browser and it is going to return JSX.
@@ -49,7 +59,7 @@ class App extends Component {
       <div className="App">
 
         {/* Like a custom HTML tag */}
-        <Todos todos = {this.state.todos} markComplete = {this.markComplete} />
+        <Todos todos = {this.state.todos} markComplete = {this.markComplete} deleteTodo = {this.deleteTodo} />
 
       </div>
 
