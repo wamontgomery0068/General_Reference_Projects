@@ -1,6 +1,13 @@
 // GET REQUEST
 function getTodos() {
-    console.log('GET Request');
+    axios({
+        method: 'get',
+        url: 'https://jsonplaceholder.typicode.com/todos'
+    })
+    // Add on our Promise
+    .then(res => console.log(res))
+    // For Error Handling
+    .catch(err => console.log(err));
   }
   
   // POST REQUEST
