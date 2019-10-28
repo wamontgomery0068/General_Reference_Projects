@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Header from './components/layout/Header';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
+import About from './components/pages/About';
 import uuid from 'uuid';
 
 // This App.css file is acting like a global css file for the project
@@ -78,22 +80,34 @@ class App extends Component {
 
     return (
 
-      <div className="App">
+      <Router>
 
-        <div className = "container">
+        <div className="App">
 
-          {/* Header Component */}
-          <Header />
+          <div className = "container">
 
-          {/* AddTodo Component */}
-          <AddTodo addTodo = {this.addToDo} />
+            {/* Header Component */}
+            <Header />
 
-          {/* Like a custom HTML tag */}
-          <Todos todos = {this.state.todos} markComplete = {this.markComplete} deleteTodo = {this.deleteTodo} />
+            <Route exact path = "/" render = {props => (
+              <React.Fragment>
+
+                {/* AddTodo Component */}
+                <AddTodo addTodo = {this.addToDo} />
+
+                {/* Like a custom HTML tag */}
+                <Todos todos = {this.state.todos} markComplete = {this.markComplete} deleteTodo = {this.deleteTodo} />
+                
+              </React.Fragment>
+            )} />
+
+            <Route path = "/about" component = {About} />
+
+          </div>
 
         </div>
 
-      </div>
+      </Router>
 
     );
   }
