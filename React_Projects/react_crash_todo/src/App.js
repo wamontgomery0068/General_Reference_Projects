@@ -47,6 +47,11 @@ class App extends Component {
 
   }
 
+  // Add Todo
+  addToDo = (title) => {
+    console.log(title);
+  }
+
   // Note:
   // Render is a lifecycle method and it is the only one that is required because it 
   // needed to render the component in the browser and it is going to return JSX.
@@ -62,12 +67,12 @@ class App extends Component {
       <div className="App">
 
         <div className = "container">
-          
+
           {/* Header Component */}
           <Header />
 
           {/* AddTodo Component */}
-          <AddTodo />
+          <AddTodo addTodo = {this.addToDo} />
 
           {/* Like a custom HTML tag */}
           <Todos todos = {this.state.todos} markComplete = {this.markComplete} deleteTodo = {this.deleteTodo} />
