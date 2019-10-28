@@ -2,25 +2,28 @@ import React, { Component } from 'react';
 import Header from './components/layout/Header';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
+import uuid from 'uuid';
 
+// This App.css file is acting like a global css file for the project
 import './App.css';
+
 
 class App extends Component {
 
   state = {
     todos: [
       {
-        id: 1,
+        id: uuid.v4(),
         title: 'Take out the trash',
         completed: false
       },
       {
-        id: 2,
+        id: uuid.v4(),
         title: 'Pick up pizza',
         completed: false
       },
       {
-        id: 3,
+        id: uuid.v4(),
         title: 'Play the new Call of Duty Modern Warfare',
         completed: false
       }
@@ -49,7 +52,18 @@ class App extends Component {
 
   // Add Todo
   addToDo = (title) => {
-    console.log(title);
+
+    // Create new variable within the scope of this addToDo method
+    const newTodo = {
+      id: uuid.v4(),
+      title,
+      completed: false
+    }
+
+    // Test whether a submitted todo shows in the console
+    // console.log(title);
+
+    this.setState({ todos: [...this.state.todos, newTodo] });
   }
 
   // Note:
