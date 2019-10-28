@@ -4,32 +4,45 @@ import Header from './components/layout/Header';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 import About from './components/pages/About';
-import uuid from 'uuid';
+// import uuid from 'uuid';
+import axios from 'axios';
 
 // This App.css file is acting like a global css file for the project
 import './App.css';
+
 
 
 class App extends Component {
 
   state = {
     todos: [
-      {
-        id: uuid.v4(),
-        title: 'Take out the trash',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Pick up pizza',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Play the new Call of Duty Modern Warfare',
-        completed: false
-      }
+
+      // uncomment to run the hardcoded data
+      // {
+      //   id: uuid.v4(),
+      //   title: 'Take out the trash',
+      //   completed: false
+      // },
+      // {
+      //   id: uuid.v4(),
+      //   title: 'Pick up pizza',
+      //   completed: false
+      // },
+      // {
+      //   id: uuid.v4(),
+      //   title: 'Play the new Call of Duty Modern Warfare',
+      //   completed: false
+      // }
     ]
+  }
+
+  componentDidMount() {
+
+    // Test to see if the data from the API is showing on the console
+    // axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10').then(response => (console.log(response)));
+
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10').then(response => this.setState({ todos: response.data}));
+
   }
 
   // Toggle Complete
@@ -45,27 +58,26 @@ class App extends Component {
   // Delete Todo
   deleteTodo = (id) => {
 
+    axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+    .then(response => this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)]}));
+
     // Test to see if the id of a single todo appears in the console
     // console.log(id);
 
-    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)]});
+   // this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)]});
 
   }
 
   // Add Todo
   addToDo = (title) => {
 
-    // Create new variable within the scope of this addToDo method
-    const newTodo = {
-      id: uuid.v4(),
+    axios.post('https://jsonplaceholder.typicode.com/todos', {
       title,
       completed: false
-    }
+    }).then(response => this.setState({ todos: [...this.state.todos, response.data] }))
 
-    // Test whether a submitted todo shows in the console
-    // console.log(title);
-
-    this.setState({ todos: [...this.state.todos, newTodo] });
+    // uncomment to use the hardcoded data
+    // this.setState({ todos: [...this.state.todos, newTodo] });
   }
 
   // Note:
