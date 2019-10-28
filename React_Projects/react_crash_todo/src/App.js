@@ -61,14 +61,18 @@ class App extends Component {
 
       <div className="App">
 
-        {/* Header Component */}
-        <Header />
+        <div className = "container">
+          
+          {/* Header Component */}
+          <Header />
 
-        {/* AddTodo Component */}
-        <AddTodo />
+          {/* AddTodo Component */}
+          <AddTodo />
 
-        {/* Like a custom HTML tag */}
-        <Todos todos = {this.state.todos} markComplete = {this.markComplete} deleteTodo = {this.deleteTodo} />
+          {/* Like a custom HTML tag */}
+          <Todos todos = {this.state.todos} markComplete = {this.markComplete} deleteTodo = {this.deleteTodo} />
+
+        </div>
 
       </div>
 
