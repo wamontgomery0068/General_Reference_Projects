@@ -24,6 +24,10 @@ class App extends Component {
     ]
   }
 
+  markComplete = () => {
+    console.log('From app.js');
+  }
+
   // Note:
   // Render is a lifecycle method and it is the only one that is required because it 
   // needed to render the component in the browser and it is going to return JSX.
@@ -39,7 +43,7 @@ class App extends Component {
       <div className="App">
 
         {/* Like a custom HTML tag */}
-        <Todos todos = {this.state.todos} />
+        <Todos todos = {this.state.todos} markComplete = {this.markComplete} />
 
       </div>
 

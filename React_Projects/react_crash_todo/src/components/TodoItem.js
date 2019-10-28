@@ -14,19 +14,18 @@ export class TodoItem extends Component {
 
     }
 
-    markComplete = (e) => {
-        console.log(this.props)
-    }
-
     render() {
+
+        // Example of destructuring
+        const { id, title } = this.props.todo;
 
         return (
 
             <div style = { this.getStyle() }>
                 
                 <p> 
-                    <input type = "checkbox" onChange = {this.markComplete} />
-                    {this.props.todo.title} 
+                    <input type = "checkbox" onChange = {this.props.markComplete.bind(this, id)} />
+                    {title} 
                 </p>
 
             </div>
