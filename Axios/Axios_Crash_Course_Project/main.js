@@ -1,18 +1,48 @@
 // GET REQUEST
 function getTodos() {
-  axios({
-      method: 'get',
-      url: 'https://jsonplaceholder.typicode.com/todos'
-  })
-  // Add on our Promise
-  .then(res => console.log(res))
-  // For Error Handling
+
+  // ***** First Example ***** 
+  // axios({
+  //     method: 'get',
+  //     url: 'https://jsonplaceholder.typicode.com/todos',
+  //     params: {
+  //       _limit: 5
+  //     }
+  // })
+  // .then(res => showOutput(res))
+  // .catch(err => console.log(err));
+
+  // ***** Second Example *****
+  axios.get('https://jsonplaceholder.typicode.com/todos/?_limit=5')
+  .then(res => showOutput(res))
   .catch(err => console.log(err));
+
 }
 
 // POST REQUEST
 function addTodo() {
-  console.log('POST Request');
+
+  // ***** First Example ***** 
+  // axios({
+  //     method: 'post',
+  //     url: 'https://jsonplaceholder.typicode.com/todos',
+  //     params: {
+  //       data: {
+  //         title: 'New Todo',
+  //         completed: false
+  //       }
+  //     }
+  // })
+  // .then(res => showOutput(res))
+  // .catch(err => console.log(err));
+
+  // ***** Second Example *****
+  axios.post('https://jsonplaceholder.typicode.com/todos', {
+    title: 'Eat Pizza',
+    completed: false
+  })
+  .then(res => showOutput(res))
+  .catch(err => console.log(err));
 }
 
 // PUT/PATCH REQUEST
