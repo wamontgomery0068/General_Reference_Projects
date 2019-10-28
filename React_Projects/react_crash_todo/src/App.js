@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Todos from './components/Todos';
+import Header from '../src/components/layout/Header';
 import './App.css';
 
 class App extends Component {
@@ -57,6 +58,8 @@ class App extends Component {
     return (
 
       <div className="App">
+
+        <Header />
 
         {/* Like a custom HTML tag */}
         <Todos todos = {this.state.todos} markComplete = {this.markComplete} deleteTodo = {this.deleteTodo} />
