@@ -6,11 +6,11 @@ export default function App() {
     <View style = {styles.screen} >
 
       <View 
-        style = {{flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center'}}>
+        style = {styles.inputContainer}>
 
         <TextInput 
           placeholder = "Course Goal" 
-          style = {{width: '80%', borderColor: 'black', borderWidth: 1, padding: 5}} 
+          style = {styles.input} 
         />
 
         <Button title = "ADD" />
@@ -29,6 +29,19 @@ const styles = StyleSheet.create({
 
   screen: {
     padding: 50
+  },
+
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between', 
+    alignContent: 'center'
+  },
+
+  input: {
+    width: '80%',
+    borderColor: 'black', 
+    borderWidth: 1, 
+    padding: 5
   }
 
 });
