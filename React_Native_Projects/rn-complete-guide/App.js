@@ -9,54 +9,41 @@ import {
   FlatList 
 } from 'react-native';
 
-export default function App() {
+// Imported Components
+import GoalItem from './components/GoalItem';
+import GoalInput from './components/GoalInput';
 
-  const [enteredGoal, setEnteredGoal] = useState('');
+export default function App() {
 
   const [courseGoals, setCourseGoals] = useState([]);
 
-  const goalInputHandler = (enteredText) => {
-    setEnteredGoal(enteredText);
-  };
-
-  const addGoalHandler = () => {
-    setCourseGoals(currentGoals => [...currentGoals, enteredGoal]);
+  const addGoalHandler = goalTitle => {
+    setCourseGoals(currentGoals => [
+      ...currentGoals, 
+      {key: Math.random().toString(), value: goalTitle}, 
+    ]);
   };
 
   return (
     <View style = {styles.screen} >
 
-      <View 
-        style = {styles.inputContainer}>
-
-        <TextInput 
-          placeholder = "Course Goal"
-          style = {styles.input} 
-          onChangeText = {goalInputHandler}
-          value = {enteredGoal}
-        />
-
-        <Button 
-          title = "ADD" 
-          onPress={addGoalHandler}
-        />
-
-      </View>
+      {/* GoalInput Component */}
+      <GoalInput onAddGoal = {addGoalHandler} />
 
       <FlatList 
+
+        keyExtractor = {(item, index) => item.id}
 
         data = {courseGoals} 
 
         renderItem = {itemData => (
 
-          <View style = {styles.listItem} >
+          // GoalItem Component
+          <GoalItem onDelete = {() => console.log('Does this work?')} title = {itemData.item.value} />
 
-            <Text> {itemData.item} </Text> 
+        )} 
 
-          </View>
-
-          )} 
-        />
+      />
 
     </View>
   );
@@ -66,27 +53,6 @@ const styles = StyleSheet.create({
 
   screen: {
     padding: 60
-  },
-
-  inputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between', 
-    alignContent: 'center'
-  },
-
-  input: {
-    width: '80%',
-    borderColor: 'black', 
-    borderWidth: 1, 
-    padding: 5
-  },
-
-  listItem: {
-    padding: 10,
-    marginVertical: 10,
-    backgroundColor: '#ccc',
-    borderColor: 'black',
-    borderWidth: 1
   }
 
 });
